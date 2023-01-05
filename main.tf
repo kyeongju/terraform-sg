@@ -1,5 +1,8 @@
 locals {
-
+  env = var.env
+  game_code = var.game_code
+  name = var.name
+  sg_rules = var.sg_rules
 }
 
 ###################################################
@@ -7,7 +10,7 @@ locals {
 ###################################################
 
 resource "aws_security_group" "sg" {
-  name        = "${var.env}-sg-${var.game_code}-${var.name}"
+  name        = "${local.env}-sg-${local.game_code}-${local.name}"
   description = "Managed By Terraform"
   vpc_id      = var.vpc_id
 
@@ -31,7 +34,7 @@ resource "aws_security_group" "sg" {
 ###################################################
 
 resource "aws_security_group_rule" "sg" {
-  for_each                 = { for rule in var.sg_rules : rule.key => rule }
+  for_each                 = { for rule in local.sg_rules : rule.key => rule }
   security_group_id        = aws_security_group.sg.id
   type                     = each.value.rule_type
   from_port                = each.value.from_port
