@@ -2,7 +2,7 @@ locals {
   env = var.env
   game_code = var.game_code
   name = var.name
-  sg_rules = var.sg_rules
+  sg_rules = tolist(var.sg_rules)
 }
 
 ###################################################
