@@ -20,8 +20,7 @@ variable "name" {
 
 variable "sg_rules" {
   description = "The Rule Set List of the Security Group"
-  type        = list(map(string))
-  default     = []
+  type        = string
 }
 
 variable "tags" {
