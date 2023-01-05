@@ -20,7 +20,8 @@ variable "name" {
 
 variable "sg_rules" {
   description = "The Rule Set List of the Security Group"
-  type        = list(any)
+  type        = any
+  default     = []
 }
 
 variable "tags" {
