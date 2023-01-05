@@ -1,9 +1,4 @@
 locals {
-  env = var.env
-  game_code = var.game_code
-  name = var.name
-  sg_rules = concat(var.sg_rules, try(jsondecode(var.sg_rules), []))
-
 }
 
 ###################################################
@@ -11,7 +6,7 @@ locals {
 ###################################################
 
 resource "aws_security_group" "sg" {
-  name        = "${local.env}-sg-${local.game_code}-${local.name}"
+  name        = "${var.env}-sg-${var.game_code}-${var.name}"
   description = "Managed By Terraform"
   vpc_id      = var.vpc_id
 
